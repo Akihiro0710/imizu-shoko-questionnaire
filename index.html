@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+<h1>商工会館内における金融実態から見える館内の景況</h1>
+
+<p>
+    射水市商工会では昨年度、新たな経営発達支援計画を国より認定を受け、この計画を実施するため、今年度も伴走型小規模事業者支援推進事業を展開しております。
+    小規模事業者が持続的発展を図る上で、経営分析を行い、事業計画を策定し具現化して行くことが必要となります。その経営分析や事業計画策定を行う上で、館内の景況の実態把握も必要となるため、当商工会にて実施しています金融実態調査結果（令和２年７月実施）を踏まえ、そこから見えてくる館内の景況を図で示すことにより、館内の事業所の方が今後の事業計画策定の参考として頂きたく報告いたします。</p>
+<p>なお、この調査は管内の企業140社を対象に実施しており、内訳として①建設業36社、②製造業26社、③卸売業2社、④小売業25社、⑤飲食・宿泊業16社、⑥サービス業19社、⑦運送業4社、⑧その他12社であり、全業種のうち小規模事業者は132社です。
+    以下、調査から導かれるものを抜粋して集計いたしました。</p>
+<ol>
+    <li>現在の借入状況
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-6">
+                    <canvas id="q1" width="100"></canvas>
+                </div>
+            </div>
+        </div>
+    </li>
+    <li>現在借入されている方の業種内訳
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-6">
+                    <canvas id="q2" width="100"></canvas>
+                </div>
+            </div>
+        </div>
+    </li>
+    <li>ここ１年間の売上高と前年同期比べた増減割合
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-6">
+                    <canvas id="q31" width="100" height="50"></canvas>
+                </div>
+                <div class="col-6">
+                    <canvas id="q32" width="100" height="50"></canvas>
+                </div>
+            </div>
+        </div>
+    </li>
+    <li>ここ１年間の仕入先、工事元請先、製造発注先等との取引条件
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-6">
+                    <canvas id="q41" width="100" height="50"></canvas>
+                </div>
+                <div class="col-6">
+                    <canvas id="q42" width="100" height="50"></canvas>
+                </div>
+            </div>
+        </div>
+    </li>
+    <li>現在の採算状況
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-6">
+                    <canvas id="q51" width="100" height="50"></canvas>
+                </div>
+                <div class="col-6">
+                    <canvas id="q52" width="100" height="50"></canvas>
+                </div>
+            </div>
+        </div>
+    </li>
+    <li>新型コロナウィルスの経営への影響＜設問1と設問13より算出＞
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-6">
+                    <canvas id="q61" width="100" height="50"></canvas>
+                </div>
+                <div class="col-6">
+                    <canvas id="q62" width="100" height="50"></canvas>
+                </div>
+                <div class="col-6">
+                    <canvas id="q63" width="100" height="50"></canvas>
+                </div>
+                <div class="col-6">
+                    <canvas id="q64" width="100" height="50"></canvas>
+                </div>
+                <div class="col-6">
+                    <canvas id="q65" width="100" height="50"></canvas>
+                </div>
+                <div class="col-6">
+                    <canvas id="q66" width="100" height="50"></canvas>
+                </div>
+                <div class="col-6">
+                    <canvas id="q67" width="100" height="50"></canvas>
+                </div>
+                <div class="col-6">
+                    <canvas id="q68" width="100" height="50"></canvas>
+                </div>
+            </div>
+        </div>
+    </li>
+    <li>今後１年間に借入計画はありますか
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-6">
+                    <canvas id="q71" width="100" height="50"></canvas>
+                </div>
+                <div class="col-6">
+                    <canvas id="q72" width="100" height="50"></canvas>
+                </div>
+            </div>
+        </div>
+    </li>
+    <li>借入計画がある方の運転・設備資金の割合
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-6">
+                    <canvas id="q81" width="100" height="50"></canvas>
+                </div>
+                <div class="col-6">
+                    <canvas id="q82" width="100" height="50"></canvas>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <canvas id="q91" width="100" height="50"></canvas>
+                </div>
+                <div class="col-6">
+                    <canvas id="q92" width="100" height="50"></canvas>
+                </div>
+            </div>
+        </div>
+    </li>
+</ol>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+<script>
+  const tooltipLabel = ({index}, {labels, datasets: [{data}]}) => `${labels[index]}: ${(data[index] / data.reduce((a, b) => a + b) * 100).toFixed(2)} % (${data[index]})`;
+  const dataLabelPlugin = {
+    afterDatasetsDraw: chart => {
+      const {ctx} = chart;
+      const fontSize = 12;
+      const fontStyle = 'normal';
+      const fontFamily = 'Helvetica Neue';
+      ctx.fillStyle = 'rgb(255, 255, 255)';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.font = Chart.helpers.fontString(fontSize, fontStyle, fontFamily);
+      chart.data.datasets.forEach(({data}, i) => {
+        const dataSum = data.reduce((a, b) => a + b);
+        const meta = chart.getDatasetMeta(i);
+        if (!meta.hidden) {
+          meta.data.forEach((element, index) => {
+            if (!data[index]) {
+              return;
+            }
+            const rate = (data[index] / dataSum * 100).toFixed(2);
+            const position = element.tooltipPosition();
+            ctx.fillText(rate + "%", position.x, position.y);
+          });
+        }
+      });
+    }
+  };
+  const drawChart = (id, labels, dataset, title = null, options = {}) => {
+    options = Object.assign({
+      tooltips: {
+        callbacks: {
+          label: tooltipLabel
+        }
+      },
+      maintainAspectRatio: true
+    }, options)
+    if (title) {
+      options = Object.assign(options, {
+        title: {
+          display: true,
+          text: title
+        }
+      });
+    }
+    new Chart(document.getElementById(id), {
+      type: 'pie',
+      data: {
+        labels,
+        datasets: [dataset]
+      },
+      options,
+      plugins: [dataLabelPlugin]
+    });
+  };
+  const a1 = ['建設業', '製造業', '卸売業', '小売業', '飲食業・宿泊業', 'サービス業', '運輸業', 'その他'];
+  const a5 = ["20%以上増加", "10〜20%未満増加", "5〜10%未満増加", "5%未満増加", "5%未満減少", "5〜10%未満減少", "10〜20%未満減少", "20%以上減少"];
+  const a7 = ["納期の短縮、支払いサイトの変更があった", "元請等から受注価格の引下げがあった", "商品仕入先から価格の引上げがあった", "あまり変化はなかった"];
+  const a8 = ["黒字", "収支とんとん", "赤字"];
+  const a13 = ["深刻な影響がある", "かなり影響がある", "少し影響がある", "ほとんど影響はない", "未回答"];
+  const a16 = ["あり", "ない", "未回答"];
+  const a32 = a16;
+  const a33 = ["土地・建物の取得", "工場・店舗等の補修・改修", "パソコン等のIT機器", "製造機器・ラインの増設", "車両等の購入", "従業員の福利厚生施設の設置", "公害防止・バイオ関連設備（環境対策含む）", "新規事業に取り組むための設備資金", "その他"];
+  const a34 = ["商品・原材料の現金買い", "買掛・手形の決済", "諸経費の支払・納税", "給与・賞与の支払", "他の借入返済に充当", "新分野進出への準備金", "未回答"];
+  const color1 = ["#c69", "#a6c", "#67c", "#6cc", "#6c7", "#ac6", "#c96", "#666"];
+  const color5 = ["#c69", "#d8a", "#eac", "#fcd", "#cdf", "#ace", "#8ad", "#69c"];
+  const color7 = ["#c69", "#69c", "#9c6", "#c96"];
+  const color8 = ["#666", "#ecc", "#c69"];
+  const color13 = ["#69c", "#8ad", "#ace", "#cdf", "#666"];
+  const color16 = ["#c69", "#69c", "#666"];
+  const color32 = color16;
+  const color33 = ["#c69", "#b6c", "#76c", "#69c", "#6cb", "#6c7", "#9c6", "#cb6", "#c76", "#666"];
+  const color34 = ["#c69", "#a6c", "#67c", "#6cc", "#6c7", "#ac6", "#666"];
+  drawChart("q1", a16, {backgroundColor: color16, data: [116, 22, 2]});
+  drawChart("q2", a1, {backgroundColor: color1, data: [31, 20, 1, 23, 13, 16, 4, 8]});
+  drawChart("q31", a5, {backgroundColor: color5, data: [3, 4, 11, 18, 10, 28, 13, 28]}, '借入あり');
+  drawChart("q32", a5, {backgroundColor: color5, data: [7, 2, 1, 0, 4, 2, 2, 6, 0]}, '借入なし');
+  drawChart("q41", a7, {backgroundColor: color7, data: [3, 3, 27, 80]}, '借入あり');
+  drawChart("q42", a7, {backgroundColor: color7, data: [0, 0, 3, 21]}, '借入なし');
+  drawChart("q51", a8, {backgroundColor: color8, data: [24, 46, 45]}, '借入あり');
+  drawChart("q52", a8, {backgroundColor: color8, data: [8, 7, 9]}, '借入なし');
+  drawChart("q61", a13, {backgroundColor: color13, data: [4, 7, 12, 14, 0]}, '建設業');
+  drawChart("q62", a13, {backgroundColor: color13, data: [4, 10, 9, 2, 1]}, '製造業');
+  drawChart("q63", a13, {backgroundColor: color13, data: [1, 1, 0, 0, 0]}, '卸売業');
+  drawChart("q64", a13, {backgroundColor: color13, data: [6, 6, 11, 2, 0]}, '小売業');
+  drawChart("q65", a13, {backgroundColor: color13, data: [5, 9, 2, 0, 0]}, '飲食業・宿泊業');
+  drawChart("q66", a13, {backgroundColor: color13, data: [6, 5, 7, 2, 0]}, 'サービス業');
+  drawChart("q67", a13, {backgroundColor: color13, data: [1, 0, 2, 1, 0]}, '運輸業');
+  drawChart("q68", a13, {backgroundColor: color13, data: [1, 6, 3, 1, 0]}, 'その他');
+  drawChart("q71", a32, {backgroundColor: color32, data: [26, 85, 5]}, '借入あり');
+  drawChart("q72", a32, {backgroundColor: color32, data: [3, 21, 0]}, '借入なし');
+  drawChart("q81", a33, {backgroundColor: color33, data: [3, 6, 1, 3, 3, 1, 0, 4, 1, 4]}, '設備資金の使途（借入あり）');
+  drawChart("q82", a33, {backgroundColor: color33, data: [0, 1, 0, 1, 1, 0, 0, 0, 0]}, '設備資金の使途（借入なし）');
+  drawChart("q91", a34, {backgroundColor: color34, data: [8, 1, 11, 2, 0, 2, 2]}, '運転資金の使途（借入あり）');
+  drawChart("q92", a34, {backgroundColor: color34, data: [0, 0, 0, 1, 0, 0, 2]}, '運転資金の使途（借入なし）');
+</script>
+
+</body>
+</html>
