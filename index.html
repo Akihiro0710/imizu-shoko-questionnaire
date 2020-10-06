@@ -5,136 +5,154 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>商工会館内における金融実態から見える館内の景況</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title>Document</title>
+    <style>
+        h2 {
+            margin: 2em 0 1em;
+        }
+
+        canvas {
+            margin-bottom: 3em;
+        }
+    </style>
 </head>
 <body>
-<h1>商工会館内における金融実態から見える館内の景況</h1>
+<div class="container">
+    <h1>商工会館内における金融実態から見える館内の景況</h1>
 
-<p>
-    射水市商工会では昨年度、新たな経営発達支援計画を国より認定を受け、この計画を実施するため、今年度も伴走型小規模事業者支援推進事業を展開しております。
-    小規模事業者が持続的発展を図る上で、経営分析を行い、事業計画を策定し具現化して行くことが必要となります。その経営分析や事業計画策定を行う上で、館内の景況の実態把握も必要となるため、当商工会にて実施しています金融実態調査結果（令和２年７月実施）を踏まえ、そこから見えてくる館内の景況を図で示すことにより、館内の事業所の方が今後の事業計画策定の参考として頂きたく報告いたします。</p>
-<p>なお、この調査は管内の企業140社を対象に実施しており、内訳として①建設業36社、②製造業26社、③卸売業2社、④小売業25社、⑤飲食・宿泊業16社、⑥サービス業19社、⑦運送業4社、⑧その他12社であり、全業種のうち小規模事業者は132社です。
-    以下、調査から導かれるものを抜粋して集計いたしました。</p>
-<ol>
-    <li>現在の借入状況
+    <p>
+        射水市商工会では昨年度、新たな経営発達支援計画を国より認定を受け、この計画を実施するため、今年度も伴走型小規模事業者支援推進事業を展開しております。
+        小規模事業者が持続的発展を図る上で、経営分析を行い、事業計画を策定し具現化して行くことが必要となります。その経営分析や事業計画策定を行う上で、館内の景況の実態把握も必要となるため、当商工会にて実施しています金融実態調査結果（令和２年７月実施）を踏まえ、そこから見えてくる館内の景況を図で示すことにより、館内の事業所の方が今後の事業計画策定の参考として頂きたく報告いたします。</p>
+    <p>
+        なお、この調査は管内の企業140社を対象に実施しており、内訳として①建設業36社、②製造業26社、③卸売業2社、④小売業25社、⑤飲食・宿泊業16社、⑥サービス業19社、⑦運送業4社、⑧その他12社であり、全業種のうち小規模事業者は132社です。
+        以下、調査から導かれるものを抜粋して集計いたしました。</p>
+    <article>
+        <h2>現在の借入状況</h2>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-6">
-                    <canvas id="q1" width="100"></canvas>
+                <div class="col-md-4 col-sm-12">
+                    <canvas id="q1" width="100" height="120"></canvas>
                 </div>
             </div>
         </div>
-    </li>
-    <li>現在借入されている方の業種内訳
+    </article>
+    <article>
+        <h2>現在借入されている方の業種内訳</h2>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-6">
-                    <canvas id="q2" width="100"></canvas>
+                <div class="col-md-4 col-sm-12">
+                    <canvas id="q2" width="100" height="120"></canvas>
                 </div>
             </div>
         </div>
-    </li>
-    <li>ここ１年間の売上高と前年同期比べた増減割合
+    </article>
+    <article>
+        <h2>ここ１年間の売上高と前年同期比べた増減割合</h2>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-6">
-                    <canvas id="q31" width="100" height="50"></canvas>
+                <div class="col-md-4 col-sm-12">
+                    <canvas id="q31" width="100" height="120"></canvas>
                 </div>
-                <div class="col-6">
-                    <canvas id="q32" width="100" height="50"></canvas>
+                <div class="col-md-4 col-sm-12">
+                    <canvas id="q32" width="100" height="120"></canvas>
                 </div>
             </div>
         </div>
-    </li>
-    <li>ここ１年間の仕入先、工事元請先、製造発注先等との取引条件
+    </article>
+    <article>
+        <h2>ここ１年間の仕入先、工事元請先、製造発注先等との取引条件</h2>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-6">
-                    <canvas id="q41" width="100" height="50"></canvas>
+                <div class="col-md-4 col-sm-12">
+                    <canvas id="q41" width="100" height="120"></canvas>
                 </div>
-                <div class="col-6">
-                    <canvas id="q42" width="100" height="50"></canvas>
+                <div class="col-md-4 col-sm-12">
+                    <canvas id="q42" width="100" height="120"></canvas>
                 </div>
             </div>
         </div>
-    </li>
-    <li>現在の採算状況
+    </article>
+    <article>
+        <h2>現在の採算状況</h2>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-6">
-                    <canvas id="q51" width="100" height="50"></canvas>
+                <div class="col-md-4 col-sm-12">
+                    <canvas id="q51" width="100" height="120"></canvas>
                 </div>
-                <div class="col-6">
-                    <canvas id="q52" width="100" height="50"></canvas>
+                <div class="col-md-4 col-sm-12">
+                    <canvas id="q52" width="100" height="120"></canvas>
                 </div>
             </div>
         </div>
-    </li>
-    <li>新型コロナウィルスの経営への影響＜設問1と設問13より算出＞
+    </article>
+    <article>
+        <h2>新型コロナウィルスの経営への影響</h2>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-6">
-                    <canvas id="q61" width="100" height="50"></canvas>
+                <div class="col-md-4 col-sm-12">
+                    <canvas id="q61" width="100" height="120"></canvas>
                 </div>
-                <div class="col-6">
-                    <canvas id="q62" width="100" height="50"></canvas>
+                <div class="col-md-4 col-sm-12">
+                    <canvas id="q62" width="100" height="120"></canvas>
                 </div>
-                <div class="col-6">
-                    <canvas id="q63" width="100" height="50"></canvas>
+                <div class="col-md-4 col-sm-12">
+                    <canvas id="q63" width="100" height="120"></canvas>
                 </div>
-                <div class="col-6">
-                    <canvas id="q64" width="100" height="50"></canvas>
+                <div class="col-md-4 col-sm-12">
+                    <canvas id="q64" width="100" height="120"></canvas>
                 </div>
-                <div class="col-6">
-                    <canvas id="q65" width="100" height="50"></canvas>
+                <div class="col-md-4 col-sm-12">
+                    <canvas id="q65" width="100" height="120"></canvas>
                 </div>
-                <div class="col-6">
-                    <canvas id="q66" width="100" height="50"></canvas>
+                <div class="col-md-4 col-sm-12">
+                    <canvas id="q66" width="100" height="120"></canvas>
                 </div>
-                <div class="col-6">
-                    <canvas id="q67" width="100" height="50"></canvas>
+                <div class="col-md-4 col-sm-12">
+                    <canvas id="q67" width="100" height="120"></canvas>
                 </div>
-                <div class="col-6">
-                    <canvas id="q68" width="100" height="50"></canvas>
+                <div class="col-md-4 col-sm-12">
+                    <canvas id="q68" width="100" height="120"></canvas>
                 </div>
             </div>
         </div>
-    </li>
-    <li>今後１年間に借入計画はありますか
+    </article>
+    <article>
+        <h2>今後１年間に借入計画はありますか</h2>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-6">
-                    <canvas id="q71" width="100" height="50"></canvas>
+                <div class="col-md-4 col-sm-12">
+                    <canvas id="q71" width="100" height="120"></canvas>
                 </div>
-                <div class="col-6">
-                    <canvas id="q72" width="100" height="50"></canvas>
+                <div class="col-md-4 col-sm-12">
+                    <canvas id="q72" width="100" height="120"></canvas>
                 </div>
             </div>
         </div>
-    </li>
-    <li>借入計画がある方の運転・設備資金の割合
+    </article>
+    <article>
+        <h2>借入計画がある方の運転・設備資金の割合</h2>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-6">
-                    <canvas id="q81" width="100" height="50"></canvas>
+                <div class="col-md-4 col-sm-12">
+                    <canvas id="q81" width="100" height="150"></canvas>
                 </div>
-                <div class="col-6">
-                    <canvas id="q82" width="100" height="50"></canvas>
+                <div class="col-md-4 col-sm-12">
+                    <canvas id="q82" width="100" height="150"></canvas>
                 </div>
             </div>
             <div class="row">
-                <div class="col-6">
-                    <canvas id="q91" width="100" height="50"></canvas>
+                <div class="col-md-4 col-sm-12">
+                    <canvas id="q91" width="100" height="120"></canvas>
                 </div>
-                <div class="col-6">
-                    <canvas id="q92" width="100" height="50"></canvas>
+                <div class="col-md-4 col-sm-12">
+                    <canvas id="q92" width="100" height="120"></canvas>
                 </div>
             </div>
         </div>
-    </li>
-</ol>
+    </article>
+</div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
@@ -150,7 +168,7 @@
   const dataLabelPlugin = {
     afterDatasetsDraw: chart => {
       const {ctx} = chart;
-      const fontSize = 12;
+      const fontSize = 14;
       const fontStyle = 'normal';
       const fontFamily = 'Helvetica Neue';
       ctx.fillStyle = 'rgb(255, 255, 255)';
@@ -180,7 +198,7 @@
           label: tooltipLabel
         }
       },
-      maintainAspectRatio: true
+      maintainAspectRatio: true,
     }, options)
     if (title) {
       options = Object.assign(options, {
@@ -210,10 +228,10 @@
   const a33 = ["土地・建物の取得", "工場・店舗等の補修・改修", "パソコン等のIT機器", "製造機器・ラインの増設", "車両等の購入", "従業員の福利厚生施設の設置", "公害防止・バイオ関連設備（環境対策含む）", "新規事業に取り組むための設備資金", "その他"];
   const a34 = ["商品・原材料の現金買い", "買掛・手形の決済", "諸経費の支払・納税", "給与・賞与の支払", "他の借入返済に充当", "新分野進出への準備金", "未回答"];
   const color1 = ["#c69", "#a6c", "#67c", "#6cc", "#6c7", "#ac6", "#c96", "#666"];
-  const color5 = ["#c69", "#d8a", "#eac", "#fcd", "#cdf", "#ace", "#8ad", "#69c"];
+  const color5 = ["#c86", "#c67", "#c6a", "#ebd", "#bde", "#6ac", "#67c", "#86c"];
   const color7 = ["#c69", "#69c", "#9c6", "#c96"];
   const color8 = ["#666", "#ecc", "#c69"];
-  const color13 = ["#69c", "#8ad", "#ace", "#cdf", "#666"];
+  const color13 = ["#86c", "#67c", "#6ac", "#bde", "#666"];
   const color16 = ["#c69", "#69c", "#666"];
   const color32 = color16;
   const color33 = ["#c69", "#b6c", "#76c", "#69c", "#6cb", "#6c7", "#9c6", "#cb6", "#c76", "#666"];
