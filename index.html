@@ -164,9 +164,20 @@
         crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
 <script>
-  const tooltipLabel = ({index}, {labels, datasets: [{data}]}) => `${labels[index]}: ${(data[index] / data.reduce((a, b) => a + b) * 100).toFixed(2)} % (${data[index]})`;
+  function sum(arr) {
+    return arr.reduce(reducer);
+  }
+  function reducer(a, b) {
+    return a + b;
+  }
+
+  function tooltipLabel({index}, {labels, datasets: [{data}]}) {
+    const per = (data[index] / sum(data) * 100).toFixed(2);
+    return labels[index] + ': ' + per + ' % (' + data[index] + ')';
+  }
+
   const dataLabelPlugin = {
-    afterDatasetsDraw: chart => {
+    afterDatasetsDraw: function (chart) {
       const {ctx} = chart;
       const fontSize = 14;
       const fontStyle = 'normal';
@@ -175,11 +186,11 @@
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       ctx.font = Chart.helpers.fontString(fontSize, fontStyle, fontFamily);
-      chart.data.datasets.forEach(({data}, i) => {
-        const dataSum = data.reduce((a, b) => a + b);
+      chart.data.datasets.forEach(function ({data}, i) {
+        const dataSum = sum(data);
         const meta = chart.getDatasetMeta(i);
         if (!meta.hidden) {
-          meta.data.forEach((element, index) => {
+          meta.data.forEach(function (element, index) {
             if (!data[index]) {
               return;
             }
@@ -191,14 +202,15 @@
       });
     }
   };
-  const drawChart = (id, labels, dataset, title = null, options = {}) => {
+
+  function drawChart(id, labels, dataset, title = null, options = {}) {
     options = Object.assign({
       tooltips: {
         callbacks: {
           label: tooltipLabel
         }
       },
-      maintainAspectRatio: true,
+      maintainAspectRatio: true
     }, options)
     if (title) {
       options = Object.assign(options, {
@@ -217,7 +229,8 @@
       options,
       plugins: [dataLabelPlugin]
     });
-  };
+  }
+
   const a1 = ['建設業', '製造業', '卸売業', '小売業', '飲食業・宿泊業', 'サービス業', '運輸業', 'その他'];
   const a5 = ["20%以上増加", "10〜20%未満増加", "5〜10%未満増加", "5%未満増加", "5%未満減少", "5〜10%未満減少", "10〜20%未満減少", "20%以上減少"];
   const a7 = ["納期の短縮、支払いサイトの変更があった", "元請等から受注価格の引下げがあった", "商品仕入先から価格の引上げがあった", "あまり変化はなかった"];
