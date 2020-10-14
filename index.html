@@ -182,7 +182,7 @@
 
   var dataLabelPlugin = {
     afterDatasetsDraw: function (chart) {
-      var {ctx} = chart;
+      var ctx = chart.ctx;
       var fontSize = 14;
       var fontStyle = 'normal';
       var fontFamily = 'Helvetica Neue';
