@@ -180,36 +180,38 @@
     return labels[index] + ': ' + per + ' % (' + data[index] + ')';
   }
 
+  function afterDraw(chart) {
+    var ctx = chart.ctx;
+    var fontSize = 14;
+    var fontStyle = 'normal';
+    var fontFamily = 'Helvetica Neue';
+    ctx.fillStyle = 'rgb(255, 255, 255)';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.font = Chart.helpers.fontString(fontSize, fontStyle, fontFamily);
+    chart.data.datasets.forEach(function (dataset, i) {
+      var data = dataset.data;
+      var dataSum = sum(data);
+      var meta = chart.getDatasetMeta(i);
+      if (!meta.hidden) {
+        meta.data.forEach(function (element, index) {
+          if (!data[index]) {
+            return;
+          }
+          var rate = (data[index] / dataSum * 100).toFixed(2);
+          var position = element.tooltipPosition();
+          ctx.fillText(rate + "%", position.x, position.y);
+        });
+      }
+    });
+  }
+
   var dataLabelPlugin = {
-    afterDatasetsDraw: function (chart) {
-      var ctx = chart.ctx;
-      var fontSize = 14;
-      var fontStyle = 'normal';
-      var fontFamily = 'Helvetica Neue';
-      ctx.fillStyle = 'rgb(255, 255, 255)';
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      ctx.font = Chart.helpers.fontString(fontSize, fontStyle, fontFamily);
-      chart.data.datasets.forEach(function (dataset, i) {
-        var data = dataset.data;
-        var dataSum = sum(data);
-        var meta = chart.getDatasetMeta(i);
-        if (!meta.hidden) {
-          meta.data.forEach(function (element, index) {
-            if (!data[index]) {
-              return;
-            }
-            var rate = (data[index] / dataSum * 100).toFixed(2);
-            var position = element.tooltipPosition();
-            ctx.fillText(rate + "%", position.x, position.y);
-          });
-        }
-      });
-    }
+    afterDatasetsDraw: afterDraw
   };
 
   function drawChart(id, labels, backgroundColor, data, title) {
-    var dataset = {backgroundColor, data};
+    var dataset = {backgroundColor: backgroundColor, data: data};
     var options = {
       tooltips: {
         callbacks: {
@@ -219,20 +221,18 @@
       maintainAspectRatio: true
     };
     if (title) {
-      options = Object.assign(options, {
-        title: {
-          display: true,
-          text: title
-        }
-      });
+      options.title = {
+        display: true,
+        text: title
+      };
     }
     new Chart(document.getElementById(id), {
       type: 'pie',
       data: {
-        labels,
+        labels: labels,
         datasets: [dataset]
       },
-      options,
+      options: options,
       plugins: [dataLabelPlugin]
     });
   }
