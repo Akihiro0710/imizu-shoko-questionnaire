@@ -167,35 +167,40 @@
   function sum(arr) {
     return arr.reduce(reducer);
   }
+
   function reducer(a, b) {
     return a + b;
   }
 
-  function tooltipLabel({index}, {labels, datasets: [{data}]}) {
-    const per = (data[index] / sum(data) * 100).toFixed(2);
+  function tooltipLabel(tooltip, dataset) {
+    var index = tooltip.index;
+    var labels = dataset.labels;
+    var data = dataset.datasets[0].data;
+    var per = (data[index] / sum(data) * 100).toFixed(2);
     return labels[index] + ': ' + per + ' % (' + data[index] + ')';
   }
 
-  const dataLabelPlugin = {
+  var dataLabelPlugin = {
     afterDatasetsDraw: function (chart) {
-      const {ctx} = chart;
-      const fontSize = 14;
-      const fontStyle = 'normal';
-      const fontFamily = 'Helvetica Neue';
+      var {ctx} = chart;
+      var fontSize = 14;
+      var fontStyle = 'normal';
+      var fontFamily = 'Helvetica Neue';
       ctx.fillStyle = 'rgb(255, 255, 255)';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       ctx.font = Chart.helpers.fontString(fontSize, fontStyle, fontFamily);
-      chart.data.datasets.forEach(function ({data}, i) {
-        const dataSum = sum(data);
-        const meta = chart.getDatasetMeta(i);
+      chart.data.datasets.forEach(function (dataset, i) {
+        var data = dataset.data;
+        var dataSum = sum(data);
+        var meta = chart.getDatasetMeta(i);
         if (!meta.hidden) {
           meta.data.forEach(function (element, index) {
             if (!data[index]) {
               return;
             }
-            const rate = (data[index] / dataSum * 100).toFixed(2);
-            const position = element.tooltipPosition();
+            var rate = (data[index] / dataSum * 100).toFixed(2);
+            var position = element.tooltipPosition();
             ctx.fillText(rate + "%", position.x, position.y);
           });
         }
@@ -203,15 +208,16 @@
     }
   };
 
-  function drawChart(id, labels, dataset, title = null, options = {}) {
-    options = Object.assign({
+  function drawChart(id, labels, backgroundColor, data, title = null) {
+    var dataset = {backgroundColor, data};
+    var options = {
       tooltips: {
         callbacks: {
           label: tooltipLabel
         }
       },
       maintainAspectRatio: true
-    }, options)
+    };
     if (title) {
       options = Object.assign(options, {
         title: {
@@ -231,46 +237,47 @@
     });
   }
 
-  const a1 = ['建設業', '製造業', '卸売業', '小売業', '飲食業・宿泊業', 'サービス業', '運輸業', 'その他'];
-  const a5 = ["20%以上増加", "10〜20%未満増加", "5〜10%未満増加", "5%未満増加", "5%未満減少", "5〜10%未満減少", "10〜20%未満減少", "20%以上減少"];
-  const a7 = ["納期の短縮、支払いサイトの変更があった", "元請等から受注価格の引下げがあった", "商品仕入先から価格の引上げがあった", "あまり変化はなかった"];
-  const a8 = ["黒字", "収支とんとん", "赤字"];
-  const a13 = ["深刻な影響がある", "かなり影響がある", "少し影響がある", "ほとんど影響はない", "未回答"];
-  const a16 = ["あり", "ない", "未回答"];
-  const a32 = a16;
-  const a33 = ["土地・建物の取得", "工場・店舗等の補修・改修", "パソコン等のIT機器", "製造機器・ラインの増設", "車両等の購入", "従業員の福利厚生施設の設置", "公害防止・バイオ関連設備（環境対策含む）", "新規事業に取り組むための設備資金", "その他"];
-  const a34 = ["商品・原材料の現金買い", "買掛・手形の決済", "諸経費の支払・納税", "給与・賞与の支払", "他の借入返済に充当", "新分野進出への準備金", "未回答"];
-  const color1 = ["#c69", "#a6c", "#67c", "#6cc", "#6c7", "#ac6", "#c96", "#666"];
-  const color5 = ["#c86", "#c67", "#c6a", "#ebd", "#bde", "#6ac", "#67c", "#86c"];
-  const color7 = ["#c69", "#69c", "#9c6", "#c96"];
-  const color8 = ["#666", "#ecc", "#c69"];
-  const color13 = ["#86c", "#67c", "#6ac", "#bde", "#666"];
-  const color16 = ["#c69", "#69c", "#666"];
-  const color32 = color16;
-  const color33 = ["#c69", "#b6c", "#76c", "#69c", "#6cb", "#6c7", "#9c6", "#cb6", "#c76", "#666"];
-  const color34 = ["#c69", "#a6c", "#67c", "#6cc", "#6c7", "#ac6", "#666"];
-  drawChart("q1", a16, {backgroundColor: color16, data: [116, 22, 2]});
-  drawChart("q2", a1, {backgroundColor: color1, data: [31, 20, 1, 23, 13, 16, 4, 8]});
-  drawChart("q31", a5, {backgroundColor: color5, data: [3, 4, 11, 18, 10, 28, 13, 28]}, '借入あり');
-  drawChart("q32", a5, {backgroundColor: color5, data: [7, 2, 1, 0, 4, 2, 2, 6, 0]}, '借入なし');
-  drawChart("q41", a7, {backgroundColor: color7, data: [3, 3, 27, 80]}, '借入あり');
-  drawChart("q42", a7, {backgroundColor: color7, data: [0, 0, 3, 21]}, '借入なし');
-  drawChart("q51", a8, {backgroundColor: color8, data: [24, 46, 45]}, '借入あり');
-  drawChart("q52", a8, {backgroundColor: color8, data: [8, 7, 9]}, '借入なし');
-  drawChart("q61", a13, {backgroundColor: color13, data: [4, 7, 12, 14, 0]}, '建設業');
-  drawChart("q62", a13, {backgroundColor: color13, data: [4, 10, 9, 2, 1]}, '製造業');
-  drawChart("q63", a13, {backgroundColor: color13, data: [1, 1, 0, 0, 0]}, '卸売業');
-  drawChart("q64", a13, {backgroundColor: color13, data: [6, 6, 11, 2, 0]}, '小売業');
-  drawChart("q65", a13, {backgroundColor: color13, data: [5, 9, 2, 0, 0]}, '飲食業・宿泊業');
-  drawChart("q66", a13, {backgroundColor: color13, data: [6, 5, 7, 2, 0]}, 'サービス業');
-  drawChart("q67", a13, {backgroundColor: color13, data: [1, 0, 2, 1, 0]}, '運輸業');
-  drawChart("q68", a13, {backgroundColor: color13, data: [1, 6, 3, 1, 0]}, 'その他');
-  drawChart("q71", a32, {backgroundColor: color32, data: [26, 85, 5]}, '借入あり');
-  drawChart("q72", a32, {backgroundColor: color32, data: [3, 21, 0]}, '借入なし');
-  drawChart("q81", a33, {backgroundColor: color33, data: [3, 6, 1, 3, 3, 1, 0, 4, 1, 4]}, '設備資金の使途（借入あり）');
-  drawChart("q82", a33, {backgroundColor: color33, data: [0, 1, 0, 1, 1, 0, 0, 0, 0]}, '設備資金の使途（借入なし）');
-  drawChart("q91", a34, {backgroundColor: color34, data: [8, 1, 11, 2, 0, 2, 2]}, '運転資金の使途（借入あり）');
-  drawChart("q92", a34, {backgroundColor: color34, data: [0, 0, 0, 1, 0, 0, 2]}, '運転資金の使途（借入なし）');
+  function drawCharts(id, labels, color, data1, data2) {
+    drawChart(id + 1, labels, color, data1, '借入あり');
+    drawChart(id + 2, labels, color, data2, '借入なし');
+  }
+
+  var a1 = ['建設業', '製造業', '卸売業', '小売業', '飲食業・宿泊業', 'サービス業', '運輸業', 'その他'];
+  var a5 = ["20%以上増加", "10〜20%未満増加", "5〜10%未満増加", "5%未満増加", "5%未満減少", "5〜10%未満減少", "10〜20%未満減少", "20%以上減少"];
+  var a7 = ["納期の短縮、支払いサイトの変更があった", "元請等から受注価格の引下げがあった", "商品仕入先から価格の引上げがあった", "あまり変化はなかった"];
+  var a8 = ["黒字", "収支とんとん", "赤字"];
+  var a13 = ["深刻な影響がある", "かなり影響がある", "少し影響がある", "ほとんど影響はない", "未回答"];
+  var a16 = ["あり", "ない", "未回答"];
+  var a32 = a16;
+  var a33 = ["土地・建物の取得", "工場・店舗等の補修・改修", "パソコン等のIT機器", "製造機器・ラインの増設", "車両等の購入", "従業員の福利厚生施設の設置", "公害防止・バイオ関連設備（環境対策含む）", "新規事業に取り組むための設備資金", "その他"];
+  var a34 = ["商品・原材料の現金買い", "買掛・手形の決済", "諸経費の支払・納税", "給与・賞与の支払", "他の借入返済に充当", "新分野進出への準備金", "未回答"];
+  var color1 = ["#c69", "#a6c", "#67c", "#6cc", "#6c7", "#ac6", "#c96", "#666"];
+  var color5 = ["#c86", "#c67", "#c6a", "#ebd", "#bde", "#6ac", "#67c", "#86c"];
+  var color7 = ["#c69", "#69c", "#9c6", "#c96"];
+  var color8 = ["#666", "#ecc", "#c69"];
+  var color13 = ["#86c", "#67c", "#6ac", "#bde", "#666"];
+  var color16 = ["#c69", "#69c", "#666"];
+  var color32 = color16;
+  var color33 = ["#c69", "#b6c", "#76c", "#69c", "#6cb", "#6c7", "#9c6", "#cb6", "#c76", "#666"];
+  var color34 = ["#c69", "#a6c", "#67c", "#6cc", "#6c7", "#ac6", "#666"];
+  drawChart("q1", a16, color16, [116, 22, 2]);
+  drawChart("q2", a1, color1, [31, 20, 1, 23, 13, 16, 4, 8]);
+  drawCharts("q3", a5, color5, [3, 4, 11, 18, 10, 28, 13, 28], [7, 2, 1, 0, 4, 2, 2, 6, 0]);
+  drawCharts("q4", a7, color7, [3, 3, 27, 80], [0, 0, 3, 21]);
+  drawCharts("q5", a8, color8, [24, 46, 45], [8, 7, 9]);
+  drawChart("q61", a13, color13, [4, 7, 12, 14, 0], '建設業');
+  drawChart("q62", a13, color13, [4, 10, 9, 2, 1], '製造業');
+  drawChart("q63", a13, color13, [1, 1, 0, 0, 0], '卸売業');
+  drawChart("q64", a13, color13, [6, 6, 11, 2, 0], '小売業');
+  drawChart("q65", a13, color13, [5, 9, 2, 0, 0], '飲食業・宿泊業');
+  drawChart("q66", a13, color13, [6, 5, 7, 2, 0], 'サービス業');
+  drawChart("q67", a13, color13, [1, 0, 2, 1, 0], '運輸業');
+  drawChart("q68", a13, color13, [1, 6, 3, 1, 0], 'その他');
+  drawCharts("q7", a32, color32, [26, 85, 5], [3, 21, 0]);
+  drawChart("q81", a33, color33, [3, 6, 1, 3, 3, 1, 0, 4, 1, 4], '設備資金の使途（借入あり）');
+  drawChart("q82", a33, color33, [0, 1, 0, 1, 1, 0, 0, 0, 0], '設備資金の使途（借入なし）');
+  drawChart("q91", a34, color34, [8, 1, 11, 2, 0, 2, 2], '運転資金の使途（借入あり）');
+  drawChart("q92", a34, color34, [0, 0, 0, 1, 0, 0, 2], '運転資金の使途（借入なし）');
 </script>
 
 </body>
